@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink,Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'
 import AdvertService from '../../services/AdvertService';
 
-export default function AdvertList() {
+export default function SellerAdvertList() {
 
-    const [adverts, setAdverts] = useState([])
+    let {userId} = useParams();
+    
+    const [sellerAdverts, setSellerAdverts] = useState([])
 
     useEffect(() => {
-        let advertService = new AdvertService();
+        let advertService = new AdvertService()
 
-        advertService.getall(1,1).then((response) => (
-            setAdverts(response.data.data)
-        ))
+        advertService.getAdvertByUserId(userId, 1, 1).then((response) => setSellerAdverts(response.data.data))
     }, [])
 
     return (
         <div className="container" style={{height:"100vh"}}>
-           <div className="row justify-content-between mt-2">
-               <div className="col-md-3 mt-5">
-                   <div className="card">
+
+            <h3 className="text-center mb-3 mt-3">{sellerAdverts[0]?.house?.seller?.firstName} {sellerAdverts[0]?.house?.seller?.lastName} 's Adverts</h3>
+            <hr />
+
+            <div className="row justify-content-between">
+                <div className="col-sm-4">
+                    <div className="card">
                        <div className="card-body">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>City</option>
@@ -49,13 +53,11 @@ export default function AdvertList() {
                        </div>
                    </div>
                     
-               </div>
-               
-               <div className="col-md-9">
-                   <h2 className="mt-4 mb-3">House Adverts</h2>
-                   <hr />
-                    { adverts.map((advert) => (
-                        <div className="card border-secondary mb-3">
+                </div>
+                <div className="col-sm-8">
+
+                    { sellerAdverts.map((advert) => (
+                        <div className="card border-secondary mb-3" >
                             <div className="row">
                                 <div className="col-sm-4">
                                     <img className="img-fluid rounded-start" src={advert.house?.houseImages[0]?.houseImagePath} alt="Not Found" />
@@ -78,21 +80,22 @@ export default function AdvertList() {
                                                 </div>
                                                 <div className="col-sm-4 text-sm-end">
                                                     <Link to={`/adverts/${advert.advertId}`} > <button className="btn btn-secondary btn-sm">Read Detail</button></Link> 
+
                                                 </div>
                                             </div>
                                         </p>
-                                      
+                                        
                                     </div>
                                 </div>
                             </div>
                         
                         </div>
                     )) }
-
-                    
-
                 </div>
-           </div>
+            </div>
+
+
+           
         </div>
     )
 }

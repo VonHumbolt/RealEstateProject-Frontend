@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import AdvertService from '../../services/AdvertService'
 
 export default function AdvertDetail() {
@@ -17,7 +17,7 @@ export default function AdvertDetail() {
     }, [])
 
     return (
-        <div className="container mt-4">
+        <div className="container mt-4" style={{height:"%100"}}>
 
             <div className="row justify-content-between">
                 <div className="col-sm-9">
@@ -138,7 +138,7 @@ export default function AdvertDetail() {
                             </div>
                             <div className="col-sm-9">
                                 <div className="card-body text-center">
-                                    <h3 className="card-title mb-3">{advert?.house?.seller?.firstName} {advert?.house?.seller?.lastName} </h3>
+                                    <Link style={{color: "inherit", textDecoration: "inherit"}} to={`/sellerAdverts/${advert?.house?.seller?.userId}`} ><h3 className="card-title mb-3">{advert?.house?.seller?.firstName} {advert?.house?.seller?.lastName} </h3> </Link> 
                                     <p className="card-text text-sm-start">
                                         <b>Email:</b> {advert?.house?.seller?.email} <br />
                                         <b>Phone: </b> {advert?.house?.seller.phoneNumber}
