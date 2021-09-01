@@ -15,4 +15,9 @@ export default class AdvertService {
     getAdvertByUserId(userId, pageNo, pageSize) {
         return axios.get(this.baseUrl + "getBySellerId?sellerId=" + userId + "&pageNo=" + pageNo + "&pageSize=" + pageSize )
     }
+
+    getAdvertsByCityId(cityId, pageNo, pageSize) {
+        return axios.get(this.baseUrl + "getallAdvertsByCityId?cityId="+ cityId + "&pageNo=" + pageNo + "&pageSize=" + pageSize)
+    }
+
 }

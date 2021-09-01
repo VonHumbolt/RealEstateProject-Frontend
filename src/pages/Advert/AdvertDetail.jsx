@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { StarFill } from 'react-bootstrap-icons'
 import { useParams, Link } from 'react-router-dom'
 import AdvertService from '../../services/AdvertService'
 
@@ -62,11 +63,10 @@ export default function AdvertDetail() {
 
                         <div className="col-sm-5">
                             <table className="table">
-                                
                                 <tbody>
                                     <tr>
-                                        <th scope="row"> {advert?.house?.location?.cityName} / {advert.house?.location?.district} </th>
-                                       
+                                        <th scope="row"> <Link to={`/adverts/city/${advert?.house?.location?.city?.cityId}`} style={{color:"inherit"}}> {advert?.house?.location?.city?.cityName} </Link>   / <Link to={"/"} style={{color:"inherit"}}> {advert.house?.location?.district?.districtName} </Link>  </th>         
+                                        <td className="text-center"> <StarFill size="24px" onClick={() => console.log("click")} /> </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Price</th>
