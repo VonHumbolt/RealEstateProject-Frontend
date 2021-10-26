@@ -3,6 +3,7 @@ import * as yup from "yup"
 import { Formik, Form } from "formik";
 import EstateTextInput from "../utilities/customFormControl/EstateTextInput";
 import { Facebook, Google } from "react-bootstrap-icons";
+import AuthService from "../services/AuthService";
 
 
 export default function Register() {
@@ -30,7 +31,16 @@ export default function Register() {
               initialValues={initialValues}
               validationSchema={schema}
               onSubmit={(values) => {
-                console.log(values);
+
+                const authService = new AuthService();
+                authService.register(values).then(response => {
+                    if (response.data.success) {
+                      console.log(response.data.data)
+                    } else {
+                      console.log(response.data.message)
+                    }
+                })
+
               }}
             >
               <Form>

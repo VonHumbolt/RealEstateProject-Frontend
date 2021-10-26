@@ -3,6 +3,7 @@ import React from 'react'
 import EstateTextInput from '../utilities/customFormControl/EstateTextInput'
 import * as yup from "yup"
 import { Facebook, Google } from 'react-bootstrap-icons'
+import AuthService from '../services/AuthService'
 
 export default function Login() {
 
@@ -18,7 +19,7 @@ export default function Login() {
 
     return (
         <div className="container p-5" style={{height:"100vh"}}>
-
+            
             <div className="row justify-content-center">
                
                 <div className="card border-dark " style={{width:"30rem"}}>
@@ -27,7 +28,15 @@ export default function Login() {
                             initialValues={initialValues}
                             validationSchema={schema}
                             onSubmit={(values) => {
-                                console.log(values)
+                                
+                                const authService = new AuthService();
+                                authService.login(values).then(response => {
+                                    if(response.data.success) {
+                                        console.log(response.data.data)
+                                    } else {
+                                        console.log(response.data.message)
+                                    }
+                                })
                             }}>
                             <Form>
 
