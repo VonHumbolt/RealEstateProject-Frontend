@@ -1,6 +1,15 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a frontend project of [Real Estate Project](https://github.com/VonHumbolt/RealEstateProject) and
+this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The goal of this project is to bring person who is looking for a house and home owners together. Home seekers can list house adverts and they can view house's details. Also, home seekers can view contact informations of home owners and they can contact them easily.
+
+## Project Images
+### Advert Detail Page
+<p align="center">
+<img src="public/advert_detail.jpg">
+</p>
 
 ## Available Scripts
 
